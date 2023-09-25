@@ -42,15 +42,18 @@ Sub GetSalesforceAccessToken()
     ' レスポンスからアクセストークンを抽出
     accessToken = JsonValue(response, "access_token")
 
-    ' アクセストークンをセルに入力
-    Range("G5").Value = accessToken
+    ' アクセストークンをテキストファイルに入力
+    ' テキストファイルを書き込みで開く（無ければ新規作成される、ある場合は上書きされる）
+    Open Range("G5").Value & "\accessToken.txt" For Output As #1
     
-    ' ログイン成功メッセージの表示
-    If Range("G5").Value = "" Then
-        MsgBox "ログイン失敗"
-    Else
-        MsgBox "ログイン成功"
-    End If
+    ' 開いたファイルに書き込む
+    Print #1, accessToken
+    
+    ' 開いたファイルを閉じる
+    Close #1
+    
+    ' メッセージの表示
+    MsgBox "処理が終了しました。"
     
     
     ' クリーンアップ

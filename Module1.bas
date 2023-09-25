@@ -5,11 +5,17 @@ Sub GetAccountsFromSalesforce()
     Dim response As String
     Dim accessToken As String
 
-    ' Salesforce REST APIエンドポイント（オブジェクト名を変更することができます）
+    ' Salesforce REST APIエンドポイント（オブジェクト名を変更することができます）intloop22-dev-ed.develop.my.salesforce.comの部分を自分の環境のドメインに変更する
     url = "https://intloop22-dev-ed.develop.my.salesforce.com/services/data/v53.0/query/?q=SELECT+Id,Name+FROM+Account"
 
-    ' Salesforceから取得したアクセストークンをセット
-    accessToken = "00D5j00000BRFTJ!ARYAQN41xtNU8jatoqMRGTun1A4oq49c4joE3IUMvXhvmyM5hu9Atw5CtWZR09mcIIyIvwU81OaCwu.5CpJ_Ow5GVyLZfDQa"
+    ' テキストファイルよりアクセストークンを取得
+    Dim i As String
+    Open Range("G5").Value & "\accessToken.txt" For Input As #1
+        Line Input #1, i
+    Close #1
+
+    ' 取得したアクセストークンをセット
+    accessToken = i
 
     ' HTTPリクエストを作成
     Set xmlhttp = CreateObject("MSXML2.ServerXMLHTTP.6.0")
