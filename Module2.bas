@@ -24,7 +24,7 @@ Sub GetSalesforceAccessToken()
     ' HTTPリクエストを作成
     Set xmlhttp = CreateObject("MSXML2.ServerXMLHTTP.6.0")
     xmlhttp.Open "POST", tokenUrl, False
-    xmlhttp.setRequestHeader "Content-Type", "application/x-www-form-urlencoded"
+    xmlhttp.SetRequestHeader "Content-Type", "application/x-www-form-urlencoded"
 
     ' リクエストボディを設定
     requestBody = "grant_type=password" & _
@@ -34,7 +34,7 @@ Sub GetSalesforceAccessToken()
                   "&password=" & password & securityToken
 
     ' リクエストを送信
-    xmlhttp.send requestBody
+    xmlhttp.Send requestBody
 
     ' レスポンスを取得
     response = xmlhttp.responseText

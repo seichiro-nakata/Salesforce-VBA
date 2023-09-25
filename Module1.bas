@@ -20,10 +20,10 @@ Sub GetAccountsFromSalesforce()
     ' HTTPリクエストを作成
     Set xmlhttp = CreateObject("MSXML2.ServerXMLHTTP.6.0")
     xmlhttp.Open "GET", url, False
-    xmlhttp.setRequestHeader "Authorization", "Bearer " & accessToken
+    xmlhttp.SetRequestHeader "Authorization", "Bearer " & accessToken
 
     ' リクエストを送信
-    xmlhttp.send ""
+    xmlhttp.Send ""
 
     ' レスポンスを取得
     response = xmlhttp.responseText
